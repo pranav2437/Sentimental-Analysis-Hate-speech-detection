@@ -138,11 +138,13 @@ for i in range(len(tokenized_tweet)):
     wordvec_df.shape #200 features added
     
 
+xtrain, xvalid, ytrain, yvalid = train_test_split(train_w2v, train['label'], random_state=42,test_size=0.3)
+
 #training on logistic regression
 from sklearn.linear_model import LogisticRegression 
 from sklearn.model_selection import train_test_split 
 from sklearn.metrics import f1_score
-
+lreg = LogisticRegression()
 train_w2v = wordvec_df.iloc[:31962,:] 
 test_w2v = wordvec_df.iloc[31962:,:] 
 xtrain_w2v = train_w2v.iloc[ytrain.index,:] 
